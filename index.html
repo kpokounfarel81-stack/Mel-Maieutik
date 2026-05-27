@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maieutik - Tuteur IA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-slate-50 font-[Inter] text-slate-900">
+    <div id="loadingApp" class="fixed inset-0 bg-white flex items-center justify-center z-[100]">
+        <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600"></div>
+    </div>
+    <div class="min-h-screen flex flex-col">
+        <header class="bg-white border-b border-slate-200 px-6 py-4 flex justify-between items-center sticky top-0 z-50">
+            <div class="flex items-center gap-2 cursor-pointer" onclick="router.navigate('home')">
+                <div class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center text-white font-bold">M</div>
+                <h1 class="text-xl font-bold tracking-tight">Maieutik</h1>
+            </div>
+            <nav id="nav-user" class="hidden items-center gap-4">
+                <span id="user-display" class="text-sm font-medium text-slate-600"></span>
+                <button onclick="authManager.logout()" class="text-sm text-red-500 hover:text-red-700">Déconnexion</button>
+            </nav>
+        </header>
+        <main id="app" class="flex-1 container mx-auto max-w-4xl p-6"></main>
+        <footer class="py-6 text-center text-slate-400 text-xs">&copy; 2024 Maieutik UAC - Tuteur Intelligent</footer>
+    </div>
+
+    <!-- Templates -->
+    <template id="homePage">
+        <div class="text-center py-20">
+            <h1 class="text-4xl font-extrabold mb-6">Apprenez intelligemment avec l'IA</h1>
+            <div class="flex justify-center gap-4">
+                <button onclick="router.navigate('signup')" class="bg-indigo-600 text-white px-8 py-3 rounded-xl font-bold">Commencer</button>
+                <button onclick="router.navigate('login')" class="bg-white border px-8 py-3 rounded-xl font-bold">Connexion</button>
+            </div>
+        </div>
+    </template>
+
+    <template id="loginPage">
+        <div class="max-w-md mx-auto bg-white p-8 rounded-2xl border shadow-sm">
+            <h2 class="text-2xl font-bold mb-6">Connexion</h2>
+            <form id="loginForm" class="space-y-4">
+                <input type="text" id="loginUsername" placeholder="Nom d'utilisateur" class="w-full p-3 border rounded-xl" required>
+                <input type="password" id="loginPassword" placeholder="Mot de passe" class="w-full p-3 border rounded-xl" required>
+                <div id="loginError" class="hidden text-red-500 text-sm"></div>
+                <button type="submit" class="w-full bg-indigo-600 text-white py-3 rounded-xl font-bold">Entrer</button>
+            </form>
+        </div>
+    </template>
+
+    <template id="signupPage">
+        <div class="max-w-md mx-auto bg-white p-8 rounded-2xl border shadow-sm">
+            <h2 class="text-2xl font-bold mb-6">Inscription</h2>
+            <form id="signupForm" class="space-y-4">
+                <input type="text" id="signupUsername" placeholder="Nom d'utilisateur" class="w-full p-3 border rounded-xl" required>
+                <input type="email" id="signupEmail" placeholder="Email" class="w-full p-3 border rounded-xl" required>
+                <input type="password" id="signupPassword" placeholder="Mot de passe" class="w-full p-3 border rounded-xl" minlength="6" required>
+                <div id="signupError" class="hidden text-red-500 text-sm"></div>
+                <button type="submit" class="w-full bg-indigo-600 text-white py-3 rounded-xl font-bold">Créer compte</button>
+            </form>
+        </div>
+    </template>
+
+    <!-- 1. Configuration des clés (Centralisation) -->
+    <script src="./env.js"></script>
+
+    <!-- 2. Librairies Externes -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.6/purify.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- 3. Scripts de l'Application (Chemins relatifs) -->
+    <script src="./js/supabase.js"></script>
+    <script src="./js/auth.js"></script>
+    <script src="./js/ui.js"></script>
+    <script src="./js/exercises.js"></script>
+    <script src="./js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: maieutik-uac
+    runtime: docker
+    plan: free
+    region: frankfurt
+    envVars:
+      - key: PORT
+        value: 8000
+    healthCheckPath: /

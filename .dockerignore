@@ -1,0 +1,9 @@
+node_modules
+.git
+.env
+.env.local
+venv
+.venv
+Dockerfile
+render.yaml
+*.md
